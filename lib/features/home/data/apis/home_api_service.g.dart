@@ -14,7 +14,7 @@ class _HomeApiService implements HomeApiService {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://vcare.integration25.com/api/';
+    baseUrl ??= 'https://accessories-eshop.runasp.net/api/';
   }
 
   final Dio _dio;

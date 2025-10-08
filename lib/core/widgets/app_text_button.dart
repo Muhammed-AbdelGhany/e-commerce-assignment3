@@ -13,6 +13,8 @@ class AppTextButton extends StatelessWidget {
   final String buttonText;
   final TextStyle textStyle;
   final VoidCallback onPressed;
+  final bool isLoading;
+
   const AppTextButton({
     super.key,
     this.borderRadius,
@@ -24,34 +26,45 @@ class AppTextButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 16.0),
+    return SizedBox(
+      width: buttonWidth ?? double.infinity,
+      height: buttonHeight ?? 56.h,
+      child: TextButton(
+        style: ButtonStyle(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
+            ),
+          ),
+          backgroundColor: WidgetStatePropertyAll(
+            backgroundColor ?? ColorsManager.mainPurple,
+          ),
+          padding: WidgetStateProperty.all<EdgeInsets>(
+            EdgeInsets.symmetric(
+              horizontal: horizontalPadding?.w ?? 0,
+              vertical: verticalPadding?.h ?? 0,
+            ),
           ),
         ),
-        backgroundColor: MaterialStatePropertyAll(
-          backgroundColor ?? ColorsManager.mainBlue,
-        ),
-        padding: MaterialStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 12.w,
-            vertical: verticalPadding?.h ?? 14.h,
-          ),
-        ),
-        fixedSize: MaterialStateProperty.all(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
-        ),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: textStyle,
+        onPressed: isLoading ? null : onPressed,
+        child: isLoading
+            ? SizedBox(
+                height: 20.h,
+                width: 20.w,
+                child: const CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ),
+              )
+            : Text(
+                buttonText,
+                style: textStyle,
+              ),
       ),
     );
   }

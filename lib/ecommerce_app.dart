@@ -16,13 +16,13 @@ class EcommerceApp extends StatelessWidget {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         child: MaterialApp(
-          title: 'Doc App',
+          title: 'Ecommerce App',
           theme: ThemeData(
             primaryColor: ColorsManager.mainBlue,
             scaffoldBackgroundColor: Colors.white,
           ),
           debugShowCheckedModeBanner: false,
-          initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.onBoardingScreen,
+          initialRoute: isLoggedInUser ? Routes.loginScreen : Routes.onBoardingScreen,
           onGenerateRoute: appRouter.generateRoute,
         ));
   }

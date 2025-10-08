@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_assignment3/core/routing/routes.dart';
 import 'package:ecommerce_assignment3/features/onboarding/onboarding_screen.dart';
 
-import '../../features/sign_up/presentation/cubit/sign_up_cubit.dart';
-import '../../features/sign_up/presentation/ui/sign_up_screen.dart';
 import '../di/dependency_injection.dart';
 
 class AppRouter {
@@ -28,13 +26,7 @@ class AppRouter {
             child: const LoginScreen(),
           ),
         );
-      case Routes.signUpScreen:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<SignupCubit>(),
-            child: const SignupScreen(),
-          ),
-        );
+     
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
