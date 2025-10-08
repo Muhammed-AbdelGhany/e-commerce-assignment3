@@ -2,6 +2,8 @@ import 'package:ecommerce_assignment3/features/home/presentation/cubit/home_cubi
 import 'package:ecommerce_assignment3/features/home/presentation/ui/home_screen.dart';
 import 'package:ecommerce_assignment3/features/login/preesentation/cubit/login_cubit.dart';
 import 'package:ecommerce_assignment3/features/login/preesentation/ui/login_screen.dart';
+import 'package:ecommerce_assignment3/features/product_details/presentation/cubit/product_details_cubit.dart';
+import 'package:ecommerce_assignment3/features/product_details/presentation/ui/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_assignment3/core/routing/routes.dart';
@@ -32,6 +34,14 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => getIt<HomeCubit>()..getCategoriesAndProducts(),
             child: const HomeScreen(),
+          ),
+        );
+      case Routes.productDetailsScreen:
+        final productId = arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ProductDetailsCubit>()..getProductDetails(productId),
+            child: ProductDetailsScreen(productId: productId),
           ),
         );
       default:

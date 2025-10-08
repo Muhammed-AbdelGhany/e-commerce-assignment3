@@ -162,6 +162,51 @@ features/
 - **Theming:** [lib/core/theming/](lib/core/theming/) (colors, styles, font weights)
 - **Widgets:** [lib/core/widgets/](lib/core/widgets/) (reusable components like buttons, text fields)
 
+### Core Widgets Usage (CRITICAL)
+
+**ALWAYS use core widgets instead of creating custom implementations:**
+
+1. **AppTextButton** (`lib/core/widgets/app_text_button.dart`)
+   - Use for ALL buttons in the app
+   - Provides consistent styling with customization options
+   - Parameters: `buttonText`, `textStyle`, `onPressed`, `buttonHeight`, `buttonWidth`, `borderRadius`, `backgroundColor`, `isLoading`
+   - Example:
+     ```dart
+     AppTextButton(
+       buttonText: 'Add to Cart',
+       textStyle: TextStyles.font18WhiteSemiBold,
+       onPressed: () { /* action */ },
+       buttonHeight: 54.h,
+       borderRadius: 30.r,
+       backgroundColor: ColorsManager.mainPurple,
+     )
+     ```
+
+2. **AppTextFormField** (`lib/core/widgets/app_text_form_field.dart`)
+   - Use for ALL text input fields
+   - Provides consistent styling and validation
+   - Supports password fields with visibility toggle
+   - Parameters: `hintText`, `validator`, `isObscureText`, `suffixIcon`, `backgroundColor`, `controller`
+
+3. **BottomNavBar** (`lib/core/widgets/bottom_nav_bar.dart`)
+   - Use for main navigation between screens
+   - Provides consistent bottom navigation UI
+   - Parameters: `currentIndex`, `onTap`
+
+**App Bar Guidelines:**
+- For simple back navigation, create feature-specific app bars in the `widgets/` folder
+- Keep app bars simple and consistent (circular back button, white background)
+- Do NOT create reusable app bar widgets in core unless needed across multiple features
+
+**Button Guidelines:**
+- NEVER use `ElevatedButton`, `TextButton`, or `OutlinedButton` directly
+- ALWAYS use `AppTextButton` from core widgets
+- Use predefined text styles from `TextStyles` class
+
+**Text Field Guidelines:**
+- NEVER use `TextField` or `TextFormField` directly
+- ALWAYS use `AppTextFormField` from core widgets
+
 ## Key Dependencies
 
 - `flutter_bloc` - State management (Cubit pattern)

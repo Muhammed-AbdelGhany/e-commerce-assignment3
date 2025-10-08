@@ -10,6 +10,10 @@ import '../../features/home/domain/repos/home_repo.dart';
 import '../../features/login/data/repos_impl/login_repo_impl.dart';
 import '../../features/login/domain/repos/login_repo.dart';
 import '../../features/login/preesentation/cubit/login_cubit.dart';
+import '../../features/product_details/data/apis/product_details_api_service.dart';
+import '../../features/product_details/data/repos/product_details_repo_impl.dart';
+import '../../features/product_details/domain/repos/product_details_repo.dart';
+import '../../features/product_details/presentation/cubit/product_details_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -26,4 +30,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(getIt()));
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
+
+  // product details
+  getIt.registerLazySingleton<ProductDetailsApiService>(() => ProductDetailsApiService(dio));
+  getIt.registerLazySingleton<ProductDetailsRepo>(() => ProductDetailsRepoImpl(getIt()));
+  getIt.registerFactory<ProductDetailsCubit>(() => ProductDetailsCubit(getIt()));
 }
