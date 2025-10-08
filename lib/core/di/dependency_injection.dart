@@ -2,9 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_assignment3/core/networking/api_service.dart';
 import 'package:ecommerce_assignment3/core/networking/dio_factory.dart';
 import 'package:ecommerce_assignment3/features/home/data/apis/home_api_service.dart';
+import 'package:ecommerce_assignment3/features/home/presentation/cubit/home_cubit.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../features/home/data/repos_impl/home_repo_impl.dart';
+import '../../features/home/data/repos/home_repo_impl.dart';
 import '../../features/home/domain/repos/home_repo.dart';
 import '../../features/login/data/repos_impl/login_repo_impl.dart';
 import '../../features/login/domain/repos/login_repo.dart';
@@ -24,4 +25,5 @@ Future<void> setupGetIt() async {
   // home
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(getIt()));
+  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
 }

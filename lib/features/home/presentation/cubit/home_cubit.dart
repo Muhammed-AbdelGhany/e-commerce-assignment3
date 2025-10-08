@@ -1,51 +1,92 @@
+import 'dart:developer';
+
+import 'package:ecommerce_assignment3/features/home/data/models/category_model.dart';
+import 'package:ecommerce_assignment3/features/home/data/models/product_model.dart';
 import 'package:ecommerce_assignment3/features/home/domain/repos/home_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ecommerce_assignment3/core/helpers/extensions.dart';
-import '../../../../core/networking/api_error_handler.dart';
-import '../../data/models/specializations_response_model.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   HomeCubit(this._homeRepo) : super(const HomeState.initial());
 
-  List<SpecializationsData?>? specializationsList = [];
+  List<CategoryModel> categoriesList = [];
+  List<ProductModel> productsList = [];
+  String? selectedCategoryId;
 
-  void getSpecializations() async {
-    emit(const HomeState.specializationsLoading());
-    final response = await _homeRepo.getSpecialization();
-    response.when(
-      success: (specializationsResponseModel) {
-        specializationsList =
-            specializationsResponseModel.specializationDataList ?? [];
+  void getCategoriesAndProducts() async {
+    emit(const HomeState.loading());
 
-        // getting the doctors list for the first specialization by default.
-        getDoctorsList(specializationId: specializationsList?.first?.id);
+    final categoriesResponse = await _homeRepo.getCategories();
+    final productsResponse = await _homeRepo.getProducts();
 
-        emit(HomeState.specializationsSuccess(
-            specializationsResponseModel.specializationDataList));
+    categoriesResponse.when(
+      success: (categoriesData) {
+        categoriesList = categoriesData.categories ?? [];
+
+        productsResponse.when(
+          success: (productsData) {
+            productsList = productsData.items ?? [];
+            emit(HomeState.categoriesAndProductsLoaded(
+              categories: categoriesList,
+              products: productsList,
+            ));
+          },
+          failure: (error) {
+                    log(" Error fetching product : ${error.apiErrorModel.message}");
+
+            emit(HomeState.error(error));
+          },
+        );
       },
-      failure: (errorHandler) {
-        emit(HomeState.specializationsError(errorHandler));
+      failure: (error) {
+        log(" Error fetching categories : ${error.apiErrorModel.message}");
+        emit(HomeState.error(error));
       },
     );
   }
 
-  void getDoctorsList({required int? specializationId}) {
-    List<Doctors?>? doctorsList =
-        getDoctorsListBySpecializationId(specializationId);
+  void filterProductsByCategory(String? categoryId) async {
+    selectedCategoryId = categoryId;
+    emit(const HomeState.loading());
 
-    if (!doctorsList.isNullOrEmpty()) {
-      emit(HomeState.doctorsSuccess(doctorsList));
-    } else {
-      emit(HomeState.doctorsError(ErrorHandler.handle('No doctors found')));
-    }
+    final productsResponse = await _homeRepo.getProducts(
+      category: categoryId,
+    );
+
+    productsResponse.when(
+      success: (productsData) {
+        productsList = productsData.items ?? [];
+        emit(HomeState.categoriesAndProductsLoaded(
+          categories: categoriesList,
+          products: productsList,
+        ));
+      },
+      failure: (error) {
+        emit(HomeState.error(error));
+      },
+    );
   }
 
-  /// returns the list of doctors based on the specialization id
-  getDoctorsListBySpecializationId(specializationId) {
-    return specializationsList
-        ?.firstWhere((specialization) => specialization?.id == specializationId)
-        ?.doctorsList;
+  void searchProducts(String searchTerm) async {
+    emit(const HomeState.loading());
+
+    final productsResponse = await _homeRepo.getProducts(
+      searchTerm: searchTerm,
+      category: selectedCategoryId,
+    );
+
+    productsResponse.when(
+      success: (productsData) {
+        productsList = productsData.items ?? [];
+        emit(HomeState.categoriesAndProductsLoaded(
+          categories: categoriesList,
+          products: productsList,
+        ));
+      },
+      failure: (error) {
+        emit(HomeState.error(error));
+      },
+    );
   }
 }

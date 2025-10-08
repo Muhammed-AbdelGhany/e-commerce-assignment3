@@ -24,19 +24,19 @@ class _HomeApiService implements HomeApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SpecializationsResponseModel> getSpecialization() async {
+  Future<CategoriesResponse> getCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<SpecializationsResponseModel>(Options(
+    final _options = _setStreamType<CategoriesResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'specialization/index',
+          'categories',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -46,9 +46,49 @@ class _HomeApiService implements HomeApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SpecializationsResponseModel _value;
+    late CategoriesResponse _value;
     try {
-      _value = SpecializationsResponseModel.fromJson(_result.data!);
+      _value = CategoriesResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ProductsResponse> getProducts(
+    String? searchTerm,
+    String? category,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'searchTerm': searchTerm,
+      r'category': category,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ProductsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'products',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProductsResponse _value;
+    try {
+      _value = ProductsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
