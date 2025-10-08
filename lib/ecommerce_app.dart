@@ -22,7 +22,7 @@ class EcommerceApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
           ),
           debugShowCheckedModeBanner: false,
-          initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
+          initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.onBoardingScreen,
           onGenerateRoute: appRouter.generateRoute,
         ));
   }

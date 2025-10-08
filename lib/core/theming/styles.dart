@@ -141,4 +141,35 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: Colors.white,
   );
+
+  // New styles for purple theme onboarding
+  static TextStyle font28BlackBold = TextStyle(
+    fontSize: 28.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
+
+  static TextStyle font16GrayRegular = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.textGray,
+  );
+
+  static TextStyle font16PurpleSemiBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.mainPurple,
+  );
+
+  static TextStyle font18WhiteSemiBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: Colors.white,
+  );
+
+  static TextStyle font16GrayMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.gray,
+  );
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/theming/styles.dart';
-import 'widgets/doc_logo_and_name.dart';
-import 'widgets/doctor_image_and_text.dart';
-import 'widgets/get_started_button.dart';
+import 'widgets/gender_selection_buttons.dart';
+import 'widgets/onboarding_background.dart';
+import 'widgets/onboarding_content_card.dart';
+import 'widgets/onboarding_person_image.dart';
+import 'widgets/onboarding_title_and_description.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -12,33 +13,41 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: 30.h, bottom: 30.h),
-          child: Column(
+      body: OnboardingBackground(
+        child: SafeArea(
+          child: Stack(
             children: [
-              const DocLogoAndName(),
-              SizedBox(height: 30.h),
-              const DoctorImageAndText(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.w),
-                child: Column(
-                  children: [
-                    Text(
-                      'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
-                      style: TextStyles.font13GrayRegular,
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 30.h),
-                    const GetStartedButton(),
-                  ],
+              // Person image positioned to extend behind white box
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 180.h,
+                child: const Center(
+                  child: OnboardingPersonImage(),
                 ),
-              )
+              ),
+
+              // White rounded container at bottom
+              Positioned(
+                left: 20.w,
+                right: 20.w,
+                bottom: 20.h,
+                child: OnboardingContentCard(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const OnboardingTitleAndDescription(),
+                      SizedBox(height: 24.h),
+                      const GenderSelectionButtons(),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }

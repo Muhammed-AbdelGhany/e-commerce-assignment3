@@ -123,6 +123,33 @@ features/
 - Generate `.g.dart` files via build_runner
 - Separate request/response models
 
+**Widget Composition (IMPORTANT):**
+- **ALWAYS break down screens into smaller, reusable widgets**
+- Each screen should be composed of multiple focused widgets stored in a `widgets/` folder
+- Main screen files should primarily handle layout and composition, not contain large build methods
+- Widget breakdown guidelines:
+  - Separate visual sections (background, header, content cards, buttons, etc.)
+  - Extract repeated UI patterns into reusable widgets
+  - Keep widgets focused on a single responsibility
+  - Use private widgets (`_WidgetName`) only when the widget is truly screen-specific and won't be reused
+- Example structure:
+  ```
+  features/feature_name/
+    presentation/ui/
+      feature_screen.dart        # Main screen (composition only)
+      widgets/
+        feature_header.dart      # Header section
+        feature_content.dart     # Content section
+        feature_button.dart      # Custom button
+  ```
+- **Reference:** See [lib/features/onboarding/](lib/features/onboarding/) for a good example of proper widget composition:
+  - `onboarding_screen.dart` - main screen (only composition)
+  - `widgets/onboarding_background.dart` - gradient background
+  - `widgets/onboarding_person_image.dart` - image with error handling
+  - `widgets/onboarding_content_card.dart` - white container
+  - `widgets/onboarding_title_and_description.dart` - text section
+  - `widgets/gender_selection_buttons.dart` - button group
+
 ### Authentication Flow
 - Login status checked on app start via `SharedPrefHelper` (secure storage)
 - Token stored in secure storage with key `SharedPrefKeys.userToken`
