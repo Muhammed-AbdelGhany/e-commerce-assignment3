@@ -1,3 +1,4 @@
-class HomeApiConstants{
-  static const String specializationEP = 'specialization/index';
-}
+class HomeApiEndPoints {
+  static const String products = "products";
+  static const String categories = "categories";
+  }

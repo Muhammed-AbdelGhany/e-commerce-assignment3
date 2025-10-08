@@ -86,7 +86,28 @@ features/
 - Feature-specific API services (e.g., `HomeApiService`) for feature endpoints
 - Generic error handling via `ApiErrorHandler`
 - Response wrapping via `ApiResult<T>` (Freezed union: Success/Failure)
-- API constants stored in `ApiConstants` and feature-specific constants files
+- API constants stored in `ApiConstants` (core) and feature-specific API endpoint files
+
+**API Endpoints Organization (IMPORTANT):**
+- **ALWAYS create a separate API endpoints file for each feature**
+- Location: `features/feature_name/data/apis/feature_name_api_endpoints.dart`
+- Pattern: Create a class with static const strings for all endpoints
+- Naming convention: `FeatureNameApiEndpoints` class, `endpointName` constants
+- Example structure:
+  ```dart
+  // features/product_details/data/apis/product_details_api_endpoints.dart
+  class ProductDetailsApiEndpoints {
+    static const String productDetails = 'products/{id}';
+  }
+
+  // features/home/data/apis/home_api_endpoints.dart
+  class HomeApiEndPoints {
+    static const String products = "products";
+    static const String categories = "categories";
+  }
+  ```
+- Reference these constants in the API service using `@GET(FeatureNameApiEndpoints.endpointName)`
+- Benefits: Centralized endpoint management, easier updates, better maintainability
 
 **Repository Pattern:**
 - Follows clean architecture with separation between domain and data layers
@@ -193,6 +214,12 @@ features/
    - Provides consistent bottom navigation UI
    - Parameters: `currentIndex`, `onTap`
 
+4. **AppErrorDialog** (`lib/core/widgets/app_error_dialog.dart`)
+   - Use for ALL error dialogs across the app
+   - Provides consistent error messaging UI
+   - Parameters: `errorMessage`, `buttonText` (optional), `onButtonPressed` (optional)
+   - Includes static `show()` method for convenience
+
 **App Bar Guidelines:**
 - For simple back navigation, create feature-specific app bars in the `widgets/` folder
 - Keep app bars simple and consistent (circular back button, white background)
@@ -206,6 +233,27 @@ features/
 **Text Field Guidelines:**
 - NEVER use `TextField` or `TextFormField` directly
 - ALWAYS use `AppTextFormField` from core widgets
+
+**Error Dialog Guidelines:**
+- ALWAYS use `AppErrorDialog` from core widgets for displaying error messages
+- Use the static `show()` method for quick display: `AppErrorDialog.show(context, errorMessage)`
+- For full-screen errors with retry, create custom error UI in the screen (see product_details_screen.dart)
+- Example:
+  ```dart
+  // Simple error dialog
+  AppErrorDialog.show(context, 'An error occurred');
+
+  // Custom button text and action
+  AppErrorDialog.show(
+    context,
+    'Network error',
+    buttonText: 'Retry',
+    onButtonPressed: () {
+      context.pop();
+      // retry logic
+    },
+  );
+  ```
 
 ## Key Dependencies
 

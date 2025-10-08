@@ -15,34 +15,45 @@ class _ProductSizeSectionState extends State<ProductSizeSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+      padding: EdgeInsets.symmetric(vertical: 16.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Size',
-                style: TextStyle(
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xFF1D1E20),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Size',
+                  style: TextStyle(
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF1D1E20),
+                  ),
                 ),
-              ),
-              Text(
-                'Size Guide',
-                style: TextStyle(
-                  fontSize: 13.sp,
-                  color: const Color(0xFF8F959E),
-                  fontWeight: FontWeight.w400,
+                Text(
+                  'Size Guide',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    color: const Color(0xFF8F959E),
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           SizedBox(height: 16.h),
-          Row(
-            children: _sizes.map((size) => _buildSizeButton(size)).toList(),
+          SizedBox(
+            height: 60.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              itemCount: _sizes.length,
+              itemBuilder: (context, index) {
+                return _buildSizeButton(_sizes[index]);
+              },
+            ),
           ),
         ],
       ),

@@ -6,7 +6,7 @@ import 'package:ecommerce_assignment3/features/login/preesentation/cubit/login_s
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/widgets/app_error_dialog.dart';
 
 class LoginBlocListener extends StatelessWidget {
   const LoginBlocListener({super.key});
@@ -44,30 +44,6 @@ class LoginBlocListener extends StatelessWidget {
 
   void setupErrorState(BuildContext context, String error) {
     context.pop();
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(
-          Icons.error,
-          color: Colors.red,
-          size: 32,
-        ),
-        content: Text(
-          error,
-          style: TextStyles.font15DarkBlueMedium,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.pop();
-            },
-            child: Text(
-              'Got it',
-              style: TextStyles.font14BlueSemiBold,
-            ),
-          ),
-        ],
-      ),
-    );
+    AppErrorDialog.show(context, error);
   }
 }
