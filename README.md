@@ -2,6 +2,14 @@
 
 A modern e-commerce mobile application built with Flutter, featuring a clean architecture, BLoC state management, and a polished UI.
 
+## 📸 Screenshots
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/images/home.png" width="250" alt="Home Screen">
+  <img src="assets/images/order_details.png" width="250" alt="Order Details">
+  <img src="assets/images/cart.png" width="250" alt="Shopping Cart">
+</div>
+
 ## 📱 Features Implemented
 
 ### 1. **Authentication**
