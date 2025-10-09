@@ -5,6 +5,10 @@ import 'package:ecommerce_assignment3/features/home/data/apis/home_api_service.d
 import 'package:ecommerce_assignment3/features/home/presentation/cubit/home_cubit.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/cart/data/apis/cart_api_service.dart';
+import '../../features/cart/data/repos/cart_repo_impl.dart';
+import '../../features/cart/domain/repos/cart_repo.dart';
+import '../../features/cart/presentation/cubit/cart_cubit.dart';
 import '../../features/home/data/repo_impl/home_repo_impl.dart';
 import '../../features/home/domain/repos/home_repo.dart';
 import '../../features/login/data/repos_impl/login_repo_impl.dart';
@@ -35,4 +39,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ProductDetailsApiService>(() => ProductDetailsApiService(dio));
   getIt.registerLazySingleton<ProductDetailsRepo>(() => ProductDetailsRepoImpl(getIt()));
   getIt.registerFactory<ProductDetailsCubit>(() => ProductDetailsCubit(getIt()));
+
+  // cart
+  getIt.registerLazySingleton<CartApiService>(() => CartApiService(dio));
+  getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt()));
+  getIt.registerFactory<CartCubit>(() => CartCubit(getIt()));
 }

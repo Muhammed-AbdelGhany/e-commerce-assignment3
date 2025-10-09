@@ -11,10 +11,12 @@ import 'product_bottom_bar.dart';
 
 class ProductDetailsContent extends StatelessWidget {
   final ProductModel product;
+  final bool isAddingToCart;
 
   const ProductDetailsContent({
     super.key,
     required this.product,
+    this.isAddingToCart = false,
   });
 
   @override
@@ -38,7 +40,10 @@ class ProductDetailsContent extends StatelessWidget {
           bottom: 0,
           left: 0,
           right: 0,
-          child: ProductBottomBar(product: product),
+          child: ProductBottomBar(
+            product: product,
+            isAddingToCart: isAddingToCart,
+          ),
         ),
       ],
     );

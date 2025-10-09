@@ -1,7 +1,10 @@
+import 'package:ecommerce_assignment3/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:ecommerce_assignment3/features/cart/presentation/ui/cart_screen.dart';
 import 'package:ecommerce_assignment3/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ecommerce_assignment3/features/home/presentation/ui/home_screen.dart';
 import 'package:ecommerce_assignment3/features/login/preesentation/cubit/login_cubit.dart';
 import 'package:ecommerce_assignment3/features/login/preesentation/ui/login_screen.dart';
+import 'package:ecommerce_assignment3/features/order_confirmed/ui/order_confirmed_screen.dart';
 import 'package:ecommerce_assignment3/features/product_details/presentation/cubit/product_details_cubit.dart';
 import 'package:ecommerce_assignment3/features/product_details/presentation/ui/product_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +46,17 @@ class AppRouter {
             create: (context) => getIt<ProductDetailsCubit>()..getProductDetails(productId),
             child: ProductDetailsScreen(productId: productId),
           ),
+        );
+      case Routes.cartScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<CartCubit>(),
+            child: const CartScreen(),
+          ),
+        );
+      case Routes.orderConfirmedScreen:
+        return MaterialPageRoute(
+          builder: (_) => const OrderConfirmedScreen(),
         );
       default:
         return null;

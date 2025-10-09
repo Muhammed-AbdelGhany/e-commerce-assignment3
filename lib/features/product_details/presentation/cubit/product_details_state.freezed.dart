@@ -20,24 +20,31 @@ mixin _$ProductDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProductModel product) success,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
     required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProductModel product)? success,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
     TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProductModel product)? success,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
     TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +54,8 @@ mixin _$ProductDetailsState {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +64,8 @@ mixin _$ProductDetailsState {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +74,8 @@ mixin _$ProductDetailsState {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,8 +145,11 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProductModel product) success,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
     required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
   }) {
     return initial();
   }
@@ -143,8 +159,10 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProductModel product)? success,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
     TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
   }) {
     return initial?.call();
   }
@@ -154,8 +172,10 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProductModel product)? success,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
     TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -171,6 +191,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
   }) {
     return initial(this);
   }
@@ -182,6 +204,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
   }) {
     return initial?.call(this);
   }
@@ -193,6 +217,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -249,8 +275,11 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProductModel product) success,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
     required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
   }) {
     return loading();
   }
@@ -260,8 +289,10 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProductModel product)? success,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
     TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
   }) {
     return loading?.call();
   }
@@ -271,8 +302,10 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProductModel product)? success,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
     TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -288,6 +321,8 @@ class _$LoadingImpl implements Loading {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
   }) {
     return loading(this);
   }
@@ -299,6 +334,8 @@ class _$LoadingImpl implements Loading {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
   }) {
     return loading?.call(this);
   }
@@ -310,6 +347,8 @@ class _$LoadingImpl implements Loading {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -329,7 +368,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProductModel product});
+  $Res call({ProductModel product, bool isAddingToCart});
 }
 
 /// @nodoc
@@ -346,12 +385,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = null,
+    Object? isAddingToCart = null,
   }) {
     return _then(_$SuccessImpl(
       null == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel,
+      isAddingToCart: null == isAddingToCart
+          ? _value.isAddingToCart
+          : isAddingToCart // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -359,14 +403,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements Success {
-  const _$SuccessImpl(this.product);
+  const _$SuccessImpl(this.product, {this.isAddingToCart = false});
 
   @override
   final ProductModel product;
+  @override
+  @JsonKey()
+  final bool isAddingToCart;
 
   @override
   String toString() {
-    return 'ProductDetailsState.success(product: $product)';
+    return 'ProductDetailsState.success(product: $product, isAddingToCart: $isAddingToCart)';
   }
 
   @override
@@ -374,11 +421,13 @@ class _$SuccessImpl implements Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.product, product) || other.product == product) &&
+            (identical(other.isAddingToCart, isAddingToCart) ||
+                other.isAddingToCart == isAddingToCart));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product);
+  int get hashCode => Object.hash(runtimeType, product, isAddingToCart);
 
   /// Create a copy of ProductDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -393,10 +442,13 @@ class _$SuccessImpl implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProductModel product) success,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
     required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
   }) {
-    return success(product);
+    return success(product, isAddingToCart);
   }
 
   @override
@@ -404,10 +456,12 @@ class _$SuccessImpl implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProductModel product)? success,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
     TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
   }) {
-    return success?.call(product);
+    return success?.call(product, isAddingToCart);
   }
 
   @override
@@ -415,12 +469,14 @@ class _$SuccessImpl implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProductModel product)? success,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
     TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(product);
+      return success(product, isAddingToCart);
     }
     return orElse();
   }
@@ -432,6 +488,8 @@ class _$SuccessImpl implements Success {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
   }) {
     return success(this);
   }
@@ -443,6 +501,8 @@ class _$SuccessImpl implements Success {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
   }) {
     return success?.call(this);
   }
@@ -454,6 +514,8 @@ class _$SuccessImpl implements Success {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -464,9 +526,11 @@ class _$SuccessImpl implements Success {
 }
 
 abstract class Success implements ProductDetailsState {
-  const factory Success(final ProductModel product) = _$SuccessImpl;
+  const factory Success(final ProductModel product,
+      {final bool isAddingToCart}) = _$SuccessImpl;
 
   ProductModel get product;
+  bool get isAddingToCart;
 
   /// Create a copy of ProductDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -546,8 +610,11 @@ class _$ErrorImpl implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProductModel product) success,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
     required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
   }) {
     return error(errorHandler);
   }
@@ -557,8 +624,10 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProductModel product)? success,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
     TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
   }) {
     return error?.call(errorHandler);
   }
@@ -568,8 +637,10 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProductModel product)? success,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
     TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -585,6 +656,8 @@ class _$ErrorImpl implements Error {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
   }) {
     return error(this);
   }
@@ -596,6 +669,8 @@ class _$ErrorImpl implements Error {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
   }) {
     return error?.call(this);
   }
@@ -607,6 +682,8 @@ class _$ErrorImpl implements Error {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -625,5 +702,339 @@ abstract class Error implements ProductDetailsState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddToCartSuccessImplCopyWith<$Res> {
+  factory _$$AddToCartSuccessImplCopyWith(_$AddToCartSuccessImpl value,
+          $Res Function(_$AddToCartSuccessImpl) then) =
+      __$$AddToCartSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$AddToCartSuccessImplCopyWithImpl<$Res>
+    extends _$ProductDetailsStateCopyWithImpl<$Res, _$AddToCartSuccessImpl>
+    implements _$$AddToCartSuccessImplCopyWith<$Res> {
+  __$$AddToCartSuccessImplCopyWithImpl(_$AddToCartSuccessImpl _value,
+      $Res Function(_$AddToCartSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$AddToCartSuccessImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToCartSuccessImpl implements AddToCartSuccess {
+  const _$AddToCartSuccessImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'ProductDetailsState.addToCartSuccess(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToCartSuccessImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of ProductDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToCartSuccessImplCopyWith<_$AddToCartSuccessImpl> get copyWith =>
+      __$$AddToCartSuccessImplCopyWithImpl<_$AddToCartSuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
+    required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
+  }) {
+    return addToCartSuccess(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
+    TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
+  }) {
+    return addToCartSuccess?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
+    TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
+    required TResult orElse(),
+  }) {
+    if (addToCartSuccess != null) {
+      return addToCartSuccess(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
+  }) {
+    return addToCartSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
+  }) {
+    return addToCartSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
+    required TResult orElse(),
+  }) {
+    if (addToCartSuccess != null) {
+      return addToCartSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddToCartSuccess implements ProductDetailsState {
+  const factory AddToCartSuccess(final String message) = _$AddToCartSuccessImpl;
+
+  String get message;
+
+  /// Create a copy of ProductDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddToCartSuccessImplCopyWith<_$AddToCartSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddToCartErrorImplCopyWith<$Res> {
+  factory _$$AddToCartErrorImplCopyWith(_$AddToCartErrorImpl value,
+          $Res Function(_$AddToCartErrorImpl) then) =
+      __$$AddToCartErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ErrorHandler errorHandler});
+}
+
+/// @nodoc
+class __$$AddToCartErrorImplCopyWithImpl<$Res>
+    extends _$ProductDetailsStateCopyWithImpl<$Res, _$AddToCartErrorImpl>
+    implements _$$AddToCartErrorImplCopyWith<$Res> {
+  __$$AddToCartErrorImplCopyWithImpl(
+      _$AddToCartErrorImpl _value, $Res Function(_$AddToCartErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? errorHandler = null,
+  }) {
+    return _then(_$AddToCartErrorImpl(
+      null == errorHandler
+          ? _value.errorHandler
+          : errorHandler // ignore: cast_nullable_to_non_nullable
+              as ErrorHandler,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToCartErrorImpl implements AddToCartError {
+  const _$AddToCartErrorImpl(this.errorHandler);
+
+  @override
+  final ErrorHandler errorHandler;
+
+  @override
+  String toString() {
+    return 'ProductDetailsState.addToCartError(errorHandler: $errorHandler)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToCartErrorImpl &&
+            (identical(other.errorHandler, errorHandler) ||
+                other.errorHandler == errorHandler));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, errorHandler);
+
+  /// Create a copy of ProductDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToCartErrorImplCopyWith<_$AddToCartErrorImpl> get copyWith =>
+      __$$AddToCartErrorImplCopyWithImpl<_$AddToCartErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ProductModel product, bool isAddingToCart)
+        success,
+    required TResult Function(ErrorHandler errorHandler) error,
+    required TResult Function(String message) addToCartSuccess,
+    required TResult Function(ErrorHandler errorHandler) addToCartError,
+  }) {
+    return addToCartError(errorHandler);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ProductModel product, bool isAddingToCart)? success,
+    TResult? Function(ErrorHandler errorHandler)? error,
+    TResult? Function(String message)? addToCartSuccess,
+    TResult? Function(ErrorHandler errorHandler)? addToCartError,
+  }) {
+    return addToCartError?.call(errorHandler);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ProductModel product, bool isAddingToCart)? success,
+    TResult Function(ErrorHandler errorHandler)? error,
+    TResult Function(String message)? addToCartSuccess,
+    TResult Function(ErrorHandler errorHandler)? addToCartError,
+    required TResult orElse(),
+  }) {
+    if (addToCartError != null) {
+      return addToCartError(errorHandler);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
+    required TResult Function(AddToCartSuccess value) addToCartSuccess,
+    required TResult Function(AddToCartError value) addToCartError,
+  }) {
+    return addToCartError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
+    TResult? Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult? Function(AddToCartError value)? addToCartError,
+  }) {
+    return addToCartError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
+    TResult Function(AddToCartSuccess value)? addToCartSuccess,
+    TResult Function(AddToCartError value)? addToCartError,
+    required TResult orElse(),
+  }) {
+    if (addToCartError != null) {
+      return addToCartError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddToCartError implements ProductDetailsState {
+  const factory AddToCartError(final ErrorHandler errorHandler) =
+      _$AddToCartErrorImpl;
+
+  ErrorHandler get errorHandler;
+
+  /// Create a copy of ProductDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddToCartErrorImplCopyWith<_$AddToCartErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

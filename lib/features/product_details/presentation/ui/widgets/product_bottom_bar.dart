@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../home/data/models/product_model.dart';
+import '../../cubit/product_details_cubit.dart';
+import '../../cubit/product_details_state.dart';
 
 class ProductBottomBar extends StatelessWidget {
   final ProductModel product;
+  final bool isAddingToCart;
 
   const ProductBottomBar({
     super.key,
     required this.product,
+    this.isAddingToCart = false,
   });
 
   @override
@@ -74,11 +79,14 @@ class ProductBottomBar extends StatelessWidget {
             buttonText: 'Add to Cart',
             textStyle: TextStyles.font18WhiteSemiBold,
             onPressed: () {
-              // TODO: Add to cart functionality
+              if (!isAddingToCart) {
+                context.read<ProductDetailsCubit>().addToCart(product.id!);
+              }
             },
             buttonHeight: 54.h,
             borderRadius: 0,
             backgroundColor: const Color(0xFF9775FA),
+            isLoading: isAddingToCart,
           ),
         ],
       ),

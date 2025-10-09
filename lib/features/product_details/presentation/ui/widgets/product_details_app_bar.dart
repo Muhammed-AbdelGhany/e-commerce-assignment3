@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/helpers/extensions.dart';
+import '../../../../../core/routing/routes.dart';
+
 class ProductDetailsAppBar extends StatelessWidget {
   const ProductDetailsAppBar({super.key});
 
@@ -28,9 +31,7 @@ class ProductDetailsAppBar extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {
-              // TODO: Add to cart functionality
-            },
+            onTap: () => context.pushNamed(Routes.cartScreen),
             child: Container(
               width: 44.w,
               height: 44.h,
